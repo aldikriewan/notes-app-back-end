@@ -1,18 +1,15 @@
-/**
- * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
- */
-exports.shorthands = undefined;
-
-/**
- * @param pgm {import('node-pg-migrate').MigrationBuilder}
- * @param run {() => void | undefined}
- * @returns {Promise<void> | void}
- */
-exports.up = (pgm) => {};
-
-/**
- * @param pgm {import('node-pg-migrate').MigrationBuilder}
- * @param run {() => void | undefined}
- * @returns {Promise<void> | void}
- */
-exports.down = (pgm) => {};
+/* eslint-disable camelcase */
+ 
+exports.shorthands = undefined;
+ 
+exports.up = (pgm) => {
+  pgm.addColumn('notes', {
+    owner: {
+      type: 'VARCHAR(50)',
+    },
+  });
+};
+ 
+exports.down = (pgm) => {
+  pgm.dropColumn('notes', 'owner');
+};
